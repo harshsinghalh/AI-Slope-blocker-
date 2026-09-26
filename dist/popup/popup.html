@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laya Feed Control</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="laya-popup-container" role="region" aria-label="Laya Feed Control Popup">
+    <!-- Header -->
+    <header class="laya-header">
+      <div class="laya-brand">
+        <svg class="laya-logo" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m4.93 4.93 14.14 14.14"></path>
+        </svg>
+        <h1 class="laya-title">Laya Feed Control</h1>
+      </div>
+      <label class="laya-switch" aria-label="Toggle extension active state">
+        <input type="checkbox" id="master-toggle" checked>
+        <span class="laya-slider"></span>
+      </label>
+    </header>
+
+    <!-- Site Status Card -->
+    <section class="laya-status-card" aria-labelledby="status-site-heading">
+      <div class="laya-status-header">
+        <span class="laya-status-badge" id="site-badge">Checking...</span>
+        <span class="laya-site-name" id="current-site-name">Current Site</span>
+      </div>
+      <div class="laya-status-actions">
+        <button type="button" class="laya-btn laya-btn-subtle" id="btn-pause-site" aria-label="Pause filtering on this site">
+          Pause on this site
+        </button>
+        <button type="button" class="laya-btn laya-btn-subtle" id="btn-pause-1hr" aria-label="Pause filtering globally for 1 hour">
+          Pause 1 hour
+        </button>
+      </div>
+    </section>
+
+    <!-- Profile Selector -->
+    <section class="laya-section" aria-labelledby="profile-heading">
+      <div class="laya-section-title" id="profile-heading">Active Profile</div>
+      <div class="laya-profile-tabs" role="tablist" aria-label="Profile Selection">
+        <button type="button" role="tab" aria-selected="true" class="laya-tab active" data-profile="study" id="tab-study">Study</button>
+        <button type="button" role="tab" aria-selected="false" class="laya-tab" data-profile="work" id="tab-work">Work</button>
+        <button type="button" role="tab" aria-selected="false" class="laya-tab" data-profile="explore" id="tab-explore">Explore</button>
+      </div>
+    </section>
+
+    <!-- Topic Filter Chips -->
+    <section class="laya-section" aria-labelledby="topics-heading">
+      <div class="laya-section-header">
+        <div class="laya-section-title" id="topics-heading">Active Topics</div>
+        <span class="laya-section-meta" id="match-mode-indicator">Mode: ANY</span>
+      </div>
+      <div class="laya-chips-container" id="active-topics-chips" role="group" aria-label="Selected Topics">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- Universal Abuse Filter Quick View -->
+    <section class="laya-toggle-row">
+      <div class="laya-toggle-text">
+        <span class="laya-toggle-label">Block Abusive & Toxic Comments</span>
+        <span class="laya-toggle-desc">Real-time multilingual & obfuscation defense</span>
+      </div>
+      <label class="laya-mini-switch" aria-label="Toggle Universal Abuse Filter">
+        <input type="checkbox" id="abuse-filter-toggle" checked>
+        <span class="laya-mini-slider"></span>
+      </label>
+    </section>
+
+    <!-- Misinformation Preset Quick View -->
+    <section class="laya-toggle-row">
+      <div class="laya-toggle-text">
+        <span class="laya-toggle-label">Hide verified false claims about India</span>
+        <span class="laya-toggle-desc">Evidence-based factual protection</span>
+      </div>
+      <label class="laya-mini-switch" aria-label="Toggle India Misinformation Preset">
+        <input type="checkbox" id="india-preset-toggle" checked>
+        <span class="laya-mini-slider"></span>
+      </label>
+    </section>
+
+    <!-- Stats summary -->
+    <section class="laya-stats-grid" aria-label="Feed Activity Summary">
+      <div class="laya-stat-box">
+        <span class="laya-stat-val" id="stat-hidden-count">0</span>
+        <span class="laya-stat-lbl">Posts Hidden</span>
+      </div>
+      <div class="laya-stat-box">
+        <span class="laya-stat-val" id="stat-misinfo-count">0</span>
+        <span class="laya-stat-lbl">False Claims</span>
+      </div>
+      <div class="laya-stat-box">
+        <span class="laya-stat-val" id="stat-abuse-count">0</span>
+        <span class="laya-stat-lbl">Abuse Blocked</span>
+      </div>
+    </section>
+
+    <!-- Footer Links -->
+    <footer class="laya-footer">
+      <button type="button" class="laya-btn laya-btn-primary" id="btn-open-options">
+        Filter Settings & History
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

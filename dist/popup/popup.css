@@ -1,0 +1,546 @@
+/**
+ * Laya Feed Control - Popup Stylesheet
+ * Infused with interfaces.dev standards:
+ * - better-ui (concentric radii, tactile scale(0.96), optical alignment, layered shadows)
+ * - better-colors (semantic token hierarchy, single-purpose hues, verified contrast)
+ * - better-typography (tabular numerals, balanced headers, proper text-wrap)
+ * - better-layout (space-based grouping, 40px+ tap targets, logical properties)
+ * - better-accessibility (high-contrast focus rings, prefers-reduced-motion)
+ */
+
+:root {
+  /* Semantic Color System */
+  --color-bg-canvas: #090d16;
+  --color-bg-surface: #131b2e;
+  --color-bg-surface-raised: #1a253d;
+  --color-bg-interactive: rgba(255, 255, 255, 0.06);
+  --color-bg-interactive-hover: rgba(255, 255, 255, 0.1);
+  --color-bg-interactive-active: rgba(255, 255, 255, 0.14);
+
+  --color-border-subtle: rgba(255, 255, 255, 0.07);
+  --color-border-default: rgba(255, 255, 255, 0.13);
+  --color-border-hover: rgba(255, 255, 255, 0.22);
+  --color-focus-ring: #3b82f6;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+  --color-text-on-accent: #ffffff;
+
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  --color-accent-subtle: rgba(59, 130, 246, 0.12);
+  --color-accent-border: rgba(59, 130, 246, 0.35);
+
+  --color-danger: #ef4444;
+  --color-danger-subtle: rgba(239, 68, 68, 0.14);
+  --color-danger-border: rgba(239, 68, 68, 0.35);
+
+  --color-success: #10b981;
+  --color-success-subtle: rgba(16, 185, 129, 0.14);
+
+  /* Concentric Border Radii (Outer = Inner + Padding) */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+
+  /* Layered Elevation Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25);
+
+  /* Timing & Easing Curves */
+  --ease-out-cubic: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 100ms;
+  --duration-normal: 150ms;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 360px;
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible Focus Indicators */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+.laya-popup-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Header */
+.laya-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2px;
+}
+
+.laya-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--color-text-primary);
+}
+
+.laya-logo {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.laya-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Master Switch (Tactile & Accessible) */
+.laya-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.laya-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.laya-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--color-bg-interactive-active);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  transition-property: background-color, border-color;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  inset-inline-start: 2px;
+  bottom: 2px;
+  background-color: #ffffff;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  transition-property: transform, background-color;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-switch input:checked + .laya-slider {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.laya-switch input:checked + .laya-slider:before {
+  transform: translateX(20px);
+}
+
+.laya-switch:active .laya-slider:before {
+  transform: scale(0.96) translateX(0);
+}
+
+.laya-switch input:checked:active + .laya-slider:before {
+  transform: scale(0.96) translateX(20.8px);
+}
+
+/* Status Card (Concentric Radii: R_outer = 12px, padding = 12px, inner = 6px) */
+.laya-status-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.laya-status-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.laya-status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-interactive);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.laya-status-badge.supported {
+  background: var(--color-success-subtle);
+  color: var(--color-success);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.laya-status-badge.generic {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border-color: var(--color-accent-border);
+}
+
+.laya-site-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+}
+
+.laya-status-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Sections */
+.laya-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.laya-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.laya-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.laya-section-meta {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Profile Tabs */
+.laya-profile-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--color-bg-surface);
+  padding: 3px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  gap: 3px;
+}
+
+.laya-tab {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition-property: background-color, color, transform;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-cubic);
+  min-height: 32px;
+}
+
+.laya-tab:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg-interactive);
+}
+
+.laya-tab:active {
+  transform: scale(0.96);
+}
+
+.laya-tab.active {
+  background: var(--color-bg-surface-raised);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* Topic Filter Chips */
+.laya-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 28px;
+}
+
+.laya-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  transition-property: border-color, background-color;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-chip-remove {
+  background: transparent;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition-property: color, transform;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-chip-remove:hover {
+  color: var(--color-danger);
+}
+
+.laya-chip-remove:active {
+  transform: scale(0.96);
+}
+
+/* Toggle Rows (Inter-group spacing >= 2x intra-group) */
+.laya-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.laya-toggle-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.laya-toggle-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.laya-toggle-desc {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  line-height: 1.3;
+}
+
+/* Mini Switch */
+.laya-mini-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.laya-mini-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.laya-mini-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--color-bg-interactive-active);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  transition-property: background-color, border-color;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-mini-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  inset-inline-start: 2px;
+  bottom: 2px;
+  background-color: #ffffff;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  transition-property: transform;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-mini-switch input:checked + .laya-mini-slider {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.laya-mini-switch input:checked + .laya-mini-slider:before {
+  transform: translateX(16px);
+}
+
+.laya-mini-switch:active .laya-mini-slider:before {
+  transform: scale(0.96) translateX(0);
+}
+
+.laya-mini-switch input:checked:active + .laya-mini-slider:before {
+  transform: scale(0.96) translateX(16px);
+}
+
+/* Stats Grid (Tabular numerals + concentric radius) */
+.laya-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.laya-stat-box {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.laya-stat-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  letter-spacing: -0.02em;
+}
+
+.laya-stat-lbl {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Buttons (Tactile scale(0.96) on active, optical centering, one primary filled action) */
+.laya-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 36px;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-btn:active {
+  transform: scale(0.96);
+}
+
+/* Primary Action - Filled background for single prominent action */
+.laya-btn-primary {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  border: 1px solid var(--color-accent);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.laya-btn-primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+/* Subtle Action - Neutral bordered for secondary actions */
+.laya-btn-subtle {
+  background: var(--color-bg-interactive);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-subtle);
+  padding: 6px 10px;
+  font-size: 11px;
+}
+
+.laya-btn-subtle:hover {
+  background: var(--color-bg-interactive-hover);
+  border-color: var(--color-border-hover);
+}
+
+.laya-footer {
+  padding-top: 4px;
+}
+
+/* Reduced Motion Preference Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

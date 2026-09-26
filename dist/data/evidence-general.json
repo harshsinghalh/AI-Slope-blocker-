@@ -1,0 +1,50 @@
+[
+  {
+    "claimId": "gen-claim-001",
+    "claimText": "5G cellular telecommunication towers transmit and activate biological pathogens inside human cells",
+    "keywords": ["5g towers", "pathogens", "biological virus", "cellular radiation illness"],
+    "sourceUrl": "https://www.who.int/news-room/questions-and-answers/item/radiation-5g-mobile-networks-and-health",
+    "publisher": "World Health Organization (WHO) / IEEE",
+    "publicationDate": "2020-02-27",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "Radiofrequency signals from 5G networks operate on non-ionizing electromagnetic radiation that cannot generate or transmit living viruses or biological pathogens.",
+    "scope": "Global / Technology & Health",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "gen-claim-002",
+    "claimText": "NASA confirmed Earth will experience three days of total complete solar darkness due to planetary alignment",
+    "keywords": ["nasa confirms", "three days darkness", "solar blackout", "planetary alignment"],
+    "sourceUrl": "https://science.nasa.gov/solar-system/planetary-alignment-myths",
+    "publisher": "NASA Science",
+    "publicationDate": "2021-10-15",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "No planetary alignment or solar event can cause global darkness for days across the entire Earth. NASA has never issued such a statement.",
+    "scope": "Global / Space & Astronomy",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "gen-claim-003",
+    "claimText": "James Webb Space Telescope discovered conclusive evidence that the Big Bang never happened and standard cosmology is refuted",
+    "keywords": ["jwst big bang never happened", "cosmology refuted", "big bang debunked"],
+    "sourceUrl": "https://www.scientificamerican.com/article/no-the-big-bang-did-not-not-happen/",
+    "publisher": "Scientific American / Nature Astronomy",
+    "publicationDate": "2022-09-02",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "Early galaxy observations from JWST test models of early cosmic structure formation but do not contradict the expanding universe, cosmic microwave background, or Big Bang cosmology.",
+    "scope": "Global / Astrophysics",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "gen-report-101",
+    "claimText": "Global mean surface temperatures in 2024 were approximately 1.5 degrees Celsius above pre-industrial averages",
+    "keywords": ["global temperature", "climate record", "copernicus", "pre-industrial average"],
+    "sourceUrl": "https://climate.copernicus.eu/global-climate-highlights-2024",
+    "publisher": "Copernicus Climate Change Service (C3S) / WMO",
+    "publicationDate": "2025-01-09",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "Dataset recordings showed annual average surface temperature reached record anomaly thresholds, verified across ERA5 satellite and in-situ instruments.",
+    "scope": "Global / Climate Science",
+    "verdict": "TRUE"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "education",
+    "label": "Education",
+    "description": "Educational content, teaching, tutorials, and academic learning.",
+    "subtopics": ["mathematics", "science", "history", "programming", "languages"]
+  },
+  {
+    "id": "mathematics",
+    "label": "Mathematics",
+    "parent": "education",
+    "description": "Arithmetic, algebra, calculus, geometry, statistics, and proofs.",
+    "subtopics": ["calculus", "linear_algebra", "statistics"]
+  },
+  {
+    "id": "calculus",
+    "label": "Calculus",
+    "parent": "mathematics",
+    "description": "Differential and integral calculus, limits, derivatives, integrals."
+  },
+  {
+    "id": "technology",
+    "label": "Technology",
+    "description": "Tech news, hardware, software, computing, electronics, and innovations.",
+    "subtopics": ["programming", "ai_ml", "cybersecurity", "hardware"]
+  },
+  {
+    "id": "programming",
+    "label": "Programming",
+    "parent": "technology",
+    "description": "Software development, code, web development, algorithms, system engineering."
+  },
+  {
+    "id": "ai_ml",
+    "label": "Artificial Intelligence & ML",
+    "parent": "technology",
+    "description": "Machine learning, neural networks, LLMs, computer vision, data science."
+  },
+  {
+    "id": "science",
+    "label": "Science",
+    "parent": "education",
+    "description": "Physics, chemistry, biology, astronomy, earth science, scientific research."
+  },
+  {
+    "id": "history",
+    "label": "History",
+    "parent": "education",
+    "description": "Historical events, archaeology, world history, civilizations, archival footage."
+  },
+  {
+    "id": "business",
+    "label": "Business & Finance",
+    "description": "Economics, investing, entrepreneurship, markets, personal finance, management."
+  },
+  {
+    "id": "careers",
+    "label": "Careers & Professional",
+    "description": "Job search, career advice, resumes, workplace skills, professional development."
+  },
+  {
+    "id": "sports",
+    "label": "Sports & Fitness",
+    "description": "Athletics, workout, football, cricket, basketball, tennis, martial arts."
+  },
+  {
+    "id": "news",
+    "label": "News & Current Affairs",
+    "description": "Current events, international journalism, civic reports, policy updates."
+  },
+  {
+    "id": "entertainment",
+    "label": "Entertainment & Culture",
+    "description": "Movies, music, comedy, gaming, pop culture, animations."
+  },
+  {
+    "id": "art",
+    "label": "Art & Design",
+    "description": "Visual arts, graphic design, architecture, photography, illustration."
+  },
+  {
+    "id": "travel",
+    "label": "Travel & Places",
+    "description": "Geography, travel guides, cultures, landmarks, expeditions."
+  }
+]

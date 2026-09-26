@@ -1,0 +1,110 @@
+[
+  {
+    "claimId": "in-claim-001",
+    "claimText": "UNESCO has declared the Indian National Anthem as the best national anthem in the world",
+    "keywords": ["unesco", "national anthem", "best anthem", "jana gana mana"],
+    "sourceUrl": "https://www.thehindu.com/news/national/unesco-did-not-declare-jana-gana-mana-best-anthem/article1234567.ece",
+    "publisher": "The Hindu / UNESCO Official Release",
+    "publicationDate": "2016-08-14",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "UNESCO confirmed that it never votes on or ranks national anthems, and has issued no such declaration regarding the Indian National Anthem.",
+    "scope": "India / National Symbols",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "in-claim-002",
+    "claimText": "New 2000 rupee notes contain radioactive GPS microchips to track black money from satellites",
+    "keywords": ["2000 rupee note", "gps chip", "radioactive", "satellite tracking", "nano gps"],
+    "sourceUrl": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=38520",
+    "publisher": "Reserve Bank of India (RBI)",
+    "publicationDate": "2016-11-09",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "The Reserve Bank of India clarified that the currency notes contain standard security features and do not incorporate any electronic or GPS tracking microchips.",
+    "scope": "India / Economy / Currency",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "in-claim-003",
+    "claimText": "Recent video shows mass riot at Red Fort in New Delhi yesterday",
+    "keywords": ["red fort", "delhi riot", "yesterday", "clash delhi"],
+    "sourceUrl": "https://www.boomlive.in/fact-check/delhi-red-fort-old-video-clash-debunked",
+    "publisher": "BoomLive / Reuters Fact Check",
+    "publicationDate": "2024-02-15",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "The circulating footage is from farmer protests in January 2021 and does not depict any recent event or fresh unrest in New Delhi.",
+    "scope": "India / Social Events / Misattributed Media",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "in-claim-004",
+    "claimText": "Drinking boiled ginger and garlic water completely cures COVID-19 and prevents all respiratory viral infections in India",
+    "keywords": ["boiled ginger", "garlic cure", "covid cure", "ayurveda miracle cure"],
+    "sourceUrl": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters",
+    "publisher": "World Health Organization (WHO) / Ministry of AYUSH",
+    "publicationDate": "2022-04-10",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "While garlic and ginger possess mild antimicrobial properties, there is no clinical evidence that drinking garlic/ginger water protects people from COVID-19 or cures acute viral disease.",
+    "scope": "India / Public Health",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "in-claim-005",
+    "claimText": "Indian Meteorological Department issued an emergency red alert warning that a magnitude 9.5 earthquake will strike Mumbai tonight",
+    "keywords": ["imd alert", "mumbai earthquake", "magnitude 9.5", "tonight emergency"],
+    "sourceUrl": "https://pib.gov.in/FactCheckDetail.aspx?id=98712",
+    "publisher": "PIB Fact Check / IMD",
+    "publicationDate": "2023-07-18",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "Earthquakes cannot be predicted with specific times or magnitudes by current scientific instruments. The viral message attributed to IMD is completely fabricated.",
+    "scope": "India / Disaster Alerts",
+    "verdict": "FALSE"
+  },
+  {
+    "claimId": "in-report-101",
+    "claimText": "Air quality index (AQI) in New Delhi reached hazardous levels exceeding 400 during winter smog",
+    "keywords": ["delhi aqi", "hazardous", "air quality", "smog delhi", "pollution"],
+    "sourceUrl": "https://cpcb.nic.in/air-quality-index",
+    "publisher": "Central Pollution Control Board (CPCB)",
+    "publicationDate": "2024-11-15",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "Official monitoring stations recorded severe AQI measurements above 400 across multiple monitoring stations in the National Capital Region.",
+    "scope": "India / Environment / Reporting",
+    "verdict": "TRUE"
+  },
+  {
+    "claimId": "in-report-102",
+    "claimText": "India faces challenges in youth unemployment and graduate job readiness according to national economic survey",
+    "keywords": ["youth unemployment", "economic survey", "graduate jobs", "labor market"],
+    "sourceUrl": "https://www.indiabudget.gov.in/economicsurvey/",
+    "publisher": "Ministry of Finance, Government of India",
+    "publicationDate": "2024-07-22",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "The Economic Survey notes significant gaps in vocational skills and employability among technical and general graduates, requiring policy reform.",
+    "scope": "India / Economy / Policy Analysis",
+    "verdict": "TRUE"
+  },
+  {
+    "claimId": "in-opinion-201",
+    "claimText": "Government infrastructure spending needs to prioritize rural healthcare facilities over urban luxury expressways",
+    "keywords": ["infrastructure spending", "rural healthcare", "expressway priority", "government policy"],
+    "sourceUrl": "https://www.epw.in/perspectives/infrastructure-equity",
+    "publisher": "Economic & Political Weekly (EPW)",
+    "publicationDate": "2024-05-10",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "Analysis and editorial viewpoint on budgetary allocation priorities between high-speed transit corridors and public health center staffing.",
+    "scope": "India / Public Debate & Opinion",
+    "verdict": "OPINION"
+  },
+  {
+    "claimId": "in-satire-301",
+    "claimText": "Traffic police in Bengaluru installs traffic signal on pothole to control pedestrian queues",
+    "keywords": ["bengaluru traffic", "signal pothole", "pedestrian queue", "faking news"],
+    "sourceUrl": "https://fakingnews.com/bengaluru-traffic-signal-pothole",
+    "publisher": "Faking News (Satire)",
+    "publicationDate": "2023-09-01",
+    "retrievalDate": "2026-09-20",
+    "relevantPassage": "Satirical humor piece commenting on urban municipal maintenance and road infrastructure.",
+    "scope": "India / Satire",
+    "verdict": "SATIRE"
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "manifestVersion": "1.0.0",
+  "modelId": "laya-multilingual-onnx",
+  "version": "1.0.0",
+  "baseModel": "convaiinnovations/laya-multilingual",
+  "sourceRepo": "https://huggingface.co/mizchi/laya-multilingual-onnx",
+  "pinnedCommit": "f291079d3015f8b9ec6856163351ecf4b1d6fef2",
+  "license": "Apache-2.0",
+  "format": "onnx",
+  "opset": 18,
+  "dtype": "float16",
+  "parameters": "322M",
+  "contextWindow": 1024,
+  "headBudget": 256,
+  "cacheNamespace": "laya-models-v1",
+  "artifacts": [
+    {
+      "name": "model_weights",
+      "path": "model.onnx",
+      "url": "https://huggingface.co/mizchi/laya-multilingual-onnx/resolve/main/model.onnx",
+      "sizeBytes": 646870871,
+      "required": true,
+      "sha256": "6b9786a8ecae46a48f7d0c3ebaa58b668f121d5a712c4c1aefbdfd1887e41b21"
+    },
+    {
+      "name": "tokenizer_vocab",
+      "path": "tokenizer/tokenizer.json",
+      "url": "https://huggingface.co/mizchi/laya-multilingual-onnx/resolve/main/tokenizer/tokenizer.json",
+      "sizeBytes": 34363188,
+      "required": true,
+      "sha256": "609d8f4c067cd3950f88594c5a802616cea245823836ef5848ee4fc40aab5b6f"
+    },
+    {
+      "name": "tokenizer_config",
+      "path": "tokenizer/tokenizer_config.json",
+      "url": "https://huggingface.co/mizchi/laya-multilingual-onnx/resolve/main/tokenizer/tokenizer_config.json",
+      "sizeBytes": 512,
+      "required": true
+    },
+    {
+      "name": "onnx_config",
+      "path": "onnx_config.json",
+      "url": "https://huggingface.co/mizchi/laya-multilingual-onnx/resolve/main/onnx_config.json",
+      "sizeBytes": 272,
+      "required": true
+    },
+    {
+      "name": "agent_config",
+      "path": "rl_agent_config.json",
+      "url": "https://huggingface.co/mizchi/laya-multilingual-onnx/resolve/main/rl_agent_config.json",
+      "sizeBytes": 448,
+      "required": true
+    }
+  ],
+  "executionProviders": [
+    {
+      "name": "webgpu",
+      "preferred": true,
+      "options": {
+        "graphOptimizationLevel": "basic"
+      }
+    },
+    {
+      "name": "wasm",
+      "preferred": false,
+      "fallback": true,
+      "bundledBinary": "wasm/ort-wasm-simd-threaded.jsep.wasm"
+    }
+  ],
+  "calibration": {
+    "temperature": [1.0, 1.0, 1.0],
+    "temperatureByOptions": {}
+  }
+}

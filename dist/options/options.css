@@ -1,0 +1,775 @@
+/**
+ * Laya Feed Control - Options Dashboard Stylesheet
+ * Infused with interfaces.dev standards:
+ * - better-ui (concentric radii, tactile scale(0.96), optical alignment, layered shadows)
+ * - better-colors (semantic token hierarchy, single-purpose hues, verified contrast)
+ * - better-typography (tabular numerals, balanced headers, pretty text-wrap)
+ * - better-layout (space-based grouping, 40px+ tap targets, logical properties)
+ * - better-accessibility (high-contrast focus rings, prefers-reduced-motion)
+ * - better-writing (concise, clear, user-centric tone)
+ */
+
+:root {
+  /* Semantic Color System */
+  --color-bg-canvas: #090d16;
+  --color-bg-sidebar: #0f172a;
+  --color-bg-surface: #131b2e;
+  --color-bg-surface-raised: #1a253d;
+  --color-bg-interactive: rgba(255, 255, 255, 0.05);
+  --color-bg-interactive-hover: rgba(255, 255, 255, 0.09);
+  --color-bg-interactive-active: rgba(255, 255, 255, 0.13);
+
+  --color-border-subtle: rgba(255, 255, 255, 0.07);
+  --color-border-default: rgba(255, 255, 255, 0.12);
+  --color-border-hover: rgba(255, 255, 255, 0.22);
+  --color-focus-ring: #3b82f6;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+  --color-text-on-accent: #ffffff;
+
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  --color-accent-subtle: rgba(59, 130, 246, 0.12);
+  --color-accent-border: rgba(59, 130, 246, 0.35);
+
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-danger-subtle: rgba(239, 68, 68, 0.14);
+  --color-danger-border: rgba(239, 68, 68, 0.35);
+
+  --color-success: #10b981;
+  --color-success-subtle: rgba(16, 185, 129, 0.14);
+  --color-success-border: rgba(16, 185, 129, 0.35);
+
+  /* Concentric Border Radii (Outer = Inner + Padding) */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+
+  /* Layered Elevation Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25);
+
+  /* Timing & Easing Curves */
+  --ease-out-cubic: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 100ms;
+  --duration-normal: 150ms;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible High-Contrast Focus Indicator */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* App Layout Grid */
+.laya-app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Navigation */
+.laya-sidebar {
+  width: 256px;
+  background-color: var(--color-bg-sidebar);
+  border-inline-end: 1px solid var(--color-border-subtle);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.laya-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  padding-inline: 4px;
+}
+
+.laya-brand-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.laya-brand-text {
+  font-weight: 700;
+}
+
+.laya-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.laya-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  min-height: 42px;
+  transition-property: background-color, color, border-color, transform;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-nav-item svg {
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+
+.laya-nav-item:hover {
+  background-color: var(--color-bg-interactive);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-subtle);
+}
+
+.laya-nav-item:active {
+  transform: scale(0.96);
+}
+
+.laya-nav-item.active {
+  background-color: var(--color-accent);
+  color: var(--color-text-on-accent);
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
+
+.laya-nav-item.active svg {
+  stroke: var(--color-text-on-accent);
+}
+
+/* Main Content Area */
+.laya-content {
+  flex: 1;
+  padding: 36px 52px;
+  max-width: 960px;
+  overflow-y: auto;
+}
+
+.laya-panel {
+  display: none;
+  flex-direction: column;
+  gap: 24px;
+  animation: laya-fade-in 180ms var(--ease-out-cubic);
+}
+
+.laya-panel.active {
+  display: flex;
+}
+
+@keyframes laya-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.laya-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.laya-panel-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+  margin-bottom: 4px;
+}
+
+.laya-panel-desc {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  text-wrap: pretty;
+  max-width: 720px;
+}
+
+/* Cards (Concentric Radius: outer 16px, padding 20px, inner 8px) */
+.laya-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  transition-property: border-color, box-shadow;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-card:hover {
+  border-color: var(--color-border-default);
+}
+
+.laya-card-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.laya-card-desc {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* Radio Group */
+.laya-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.laya-radio-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background-color: var(--color-bg-surface-raised);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  min-height: 48px;
+  transition-property: border-color, background-color, transform;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-radio-label:hover {
+  border-color: var(--color-border-hover);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.laya-radio-label:active {
+  transform: scale(0.96);
+}
+
+.laya-radio-label input[type="radio"] {
+  margin-top: 3px;
+  accent-color: var(--color-accent);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.laya-radio-label:has(input[type="radio"]:checked) {
+  border-color: var(--color-accent-border);
+  background-color: var(--color-accent-subtle);
+}
+
+.laya-radio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.laya-radio-content strong {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.laya-radio-content span {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+/* Taxonomy Grid */
+.laya-taxonomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.laya-taxonomy-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background-color: var(--color-bg-surface-raised);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  min-height: 42px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  transition-property: background-color, border-color, transform;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-taxonomy-item:hover {
+  border-color: var(--color-border-hover);
+  background-color: var(--color-bg-interactive);
+}
+
+.laya-taxonomy-item:active {
+  transform: scale(0.96);
+}
+
+.laya-taxonomy-item:has(input[type="checkbox"]:checked) {
+  border-color: var(--color-accent-border);
+  background-color: var(--color-accent-subtle);
+  color: var(--color-text-primary);
+}
+
+.laya-taxonomy-item input[type="checkbox"] {
+  accent-color: var(--color-accent);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.laya-taxonomy-item.child {
+  margin-inline-start: 18px;
+  font-size: 12px;
+  opacity: 0.92;
+}
+
+/* Form Controls */
+.laya-form-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.laya-input-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.laya-input, .laya-select {
+  background-color: var(--color-bg-canvas);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-primary);
+  padding: 9px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  min-height: 38px;
+  transition-property: border-color, box-shadow;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-input {
+  flex: 1;
+}
+
+.laya-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.laya-input:hover, .laya-select:hover {
+  border-color: var(--color-border-hover);
+}
+
+.laya-input:focus-visible, .laya-select:focus-visible {
+  border-color: var(--color-focus-ring);
+  box-shadow: 0 0 0 2px var(--color-accent-subtle);
+}
+
+/* Tables */
+.laya-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface-raised);
+}
+
+.laya-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.laya-table th {
+  text-align: left;
+  padding: 10px 14px;
+  color: var(--color-text-tertiary);
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.laya-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  vertical-align: middle;
+}
+
+.laya-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Toggle Group Card */
+.laya-toggle-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.laya-toggle-info h3 {
+  font-size: 14.5px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--color-text-primary);
+}
+
+.laya-toggle-info p {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  max-width: 620px;
+  text-wrap: pretty;
+}
+
+.laya-stat-subtext {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+
+.laya-stat-subtext strong {
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Switches (Accessible & Tactile) */
+.laya-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.laya-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.laya-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--color-bg-interactive-active);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  transition-property: background-color, border-color;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  inset-inline-start: 2px;
+  bottom: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition-property: transform;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+input:checked + .laya-slider {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+input:checked + .laya-slider:before {
+  transform: translateX(20px);
+}
+
+/* Buttons */
+.laya-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  min-height: 36px;
+  text-decoration: none;
+  transition-property: background-color, border-color, color, transform, box-shadow;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-btn:active {
+  transform: scale(0.96);
+}
+
+.laya-btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-text-on-accent);
+  border-color: var(--color-accent);
+  font-weight: 600;
+}
+
+.laya-btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.laya-btn-subtle {
+  background-color: var(--color-bg-interactive);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-subtle);
+}
+
+.laya-btn-subtle:hover {
+  background-color: var(--color-bg-interactive-hover);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}
+
+/* Pills & Badges */
+.laya-badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.laya-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent-subtle);
+  color: #93c5fd;
+  border: 1px solid var(--color-accent-border);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Model Info Rows */
+.laya-model-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.laya-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 6px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 13px;
+}
+
+.laya-info-row:last-child {
+  border-bottom: none;
+}
+
+.laya-info-row span {
+  color: var(--color-text-secondary);
+}
+
+.laya-info-row strong {
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.laya-actions-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* History Items */
+.laya-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.laya-history-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+  transition-property: border-color;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.laya-history-card:hover {
+  border-color: var(--color-border-default);
+}
+
+.laya-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.laya-history-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-danger-subtle);
+  color: #f87171;
+  border: 1px solid var(--color-danger-border);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.laya-history-reason {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+.laya-history-reason strong {
+  color: var(--color-text-primary);
+}
+
+.laya-history-snippet {
+  font-size: 13px;
+  color: var(--color-text-primary);
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-subtle);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.laya-history-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Metrics Grid (Tabular Numerals) */
+.laya-grid-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.laya-metric-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.laya-metric-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.laya-metric-val {
+  font-size: 28px;
+  font-weight: 700;
+  color: #93c5fd;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  letter-spacing: -0.02em;
+}
+
+.laya-metric-target {
+  font-size: 11.5px;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Reduced Motion Preference (Strict A11y) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laya Feed Control - Settings & History</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="laya-app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="laya-sidebar" role="navigation" aria-label="Settings Navigation">
+      <div class="laya-sidebar-brand">
+        <svg class="laya-brand-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m4.93 4.93 14.14 14.14"></path>
+        </svg>
+        <span class="laya-brand-text">Laya Feed Control</span>
+      </div>
+
+      <nav class="laya-nav">
+        <button type="button" class="laya-nav-item active" data-tab="topics">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+          Topics & Taxonomy
+        </button>
+        <button type="button" class="laya-nav-item" data-tab="keywords">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Keywords & Creators
+        </button>
+        <button type="button" class="laya-nav-item" data-tab="misinfo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Misinformation & India
+        </button>
+        <button type="button" class="laya-nav-item" data-tab="abuse">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/></svg>
+          Universal Abuse Guard
+        </button>
+        <button type="button" class="laya-nav-item" data-tab="hardware">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          WebGPU & Model
+        </button>
+        <button type="button" class="laya-nav-item" data-tab="history">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Review History
+        </button>
+        <button type="button" class="laya-nav-item" data-tab="diagnostics">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Diagnostics
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="laya-content" role="main">
+      <!-- Section: Topics -->
+      <section class="laya-panel active" id="panel-topics" aria-labelledby="heading-topics">
+        <h2 id="heading-topics" class="laya-panel-title">Topics & Hierarchical Matching</h2>
+        <p class="laya-panel-desc">Select topics to appear in your feeds. Items matching your selected categories are displayed.</p>
+
+        <!-- Matching Mode Selector -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Matching Logic</h3>
+          <div class="laya-radio-group" role="radiogroup" aria-label="Topic Matching Mode">
+            <label class="laya-radio-label">
+              <input type="radio" name="topicMatchMode" value="ANY" id="mode-any" checked>
+              <div class="laya-radio-content">
+                <strong>Match ANY selected topic (Default: OR)</strong>
+                <span>Content qualifies if it substantively matches Education OR Technology.</span>
+              </div>
+            </label>
+            <label class="laya-radio-label">
+              <input type="radio" name="topicMatchMode" value="ALL" id="mode-all">
+              <div class="laya-radio-content">
+                <strong>Match ALL selected topics (AND)</strong>
+                <span>The same item must substantively match Education AND Technology together.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Strictness Selector -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Uncertain / Unclassified Content Policy</h3>
+          <div class="laya-radio-group" role="radiogroup" aria-label="Filtering Strictness">
+            <label class="laya-radio-label">
+              <input type="radio" name="strictness" value="balanced" id="strictness-balanced" checked>
+              <div class="laya-radio-content">
+                <strong>Balanced Filtering (Recommended)</strong>
+                <span>Uncertain classifications remain visible, avoiding over-blocking of ambiguous posts.</span>
+              </div>
+            </label>
+            <label class="laya-radio-label">
+              <input type="radio" name="strictness" value="strict" id="strictness-strict">
+              <div class="laya-radio-content">
+                <strong>Strict Filtering</strong>
+                <span>Unclassified items remain hidden with the reason "Topic not established".</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Topic Taxonomy Tree -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Topic Categories</h3>
+          <div class="laya-taxonomy-grid" id="taxonomy-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Keywords & Creators -->
+      <section class="laya-panel" id="panel-keywords" aria-labelledby="heading-keywords">
+        <h2 id="heading-keywords" class="laya-panel-title">Keywords & Creator Preferences</h2>
+        <p class="laya-panel-desc">Include or exclude specific words, hashtags, and authors. Exclusions override topic matches.</p>
+
+        <!-- Add Keyword Form -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Add Keyword Rule</h3>
+          <form id="form-add-keyword" class="laya-form-row">
+            <input type="text" id="kw-input-phrase" placeholder="e.g. crypto, clickbait, spoiler" class="laya-input" required>
+            <select id="kw-input-type" class="laya-select">
+              <option value="exclude">Exclude (Hide)</option>
+              <option value="include">Include (Require)</option>
+            </select>
+            <select id="kw-input-mode" class="laya-select">
+              <option value="phrase">Phrase match</option>
+              <option value="whole_word">Whole word only</option>
+            </select>
+            <button type="submit" class="laya-btn laya-btn-primary">Add Rule</button>
+          </form>
+
+          <div class="laya-table-wrap">
+            <table class="laya-table" id="table-keywords">
+              <thead>
+                <tr>
+                  <th>Phrase / Hashtag</th>
+                  <th>Action</th>
+                  <th>Match Mode</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-keywords">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Add Creator Form -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Creator Allow / Block Rules</h3>
+          <form id="form-add-creator" class="laya-form-row">
+            <input type="text" id="creator-input-handle" placeholder="Creator handle or channel name" class="laya-input" required>
+            <select id="creator-input-action" class="laya-select">
+              <option value="block">Block Creator</option>
+              <option value="allow">Allow Creator (Bypass Topics)</option>
+            </select>
+            <button type="submit" class="laya-btn laya-btn-primary">Save Creator</button>
+          </form>
+
+          <div class="laya-table-wrap">
+            <table class="laya-table" id="table-creators">
+              <thead>
+                <tr>
+                  <th>Creator Handle</th>
+                  <th>Policy</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-creators">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Misinformation & India -->
+      <section class="laya-panel" id="panel-misinfo" aria-labelledby="heading-misinfo">
+        <h2 id="heading-misinfo" class="laya-panel-title">Evidence-Based Misinformation Controls</h2>
+        <p class="laya-panel-desc">Protect feeds from verified false claims using versioned offline evidence. Legitimate criticism and satire are protected.</p>
+
+        <div class="laya-card">
+          <div class="laya-toggle-group">
+            <div class="laya-toggle-info">
+              <h3>Hide verified false claims about India</h3>
+              <p>Hides claims contradicted by verified primary evidence (e.g. fabricated official declarations, currency hoaxes, recycled video clashes). Accurate reporting, journalism, and political criticism remain visible.</p>
+            </div>
+            <label class="laya-switch">
+              <input type="checkbox" id="setting-india-preset" checked>
+              <span class="laya-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="laya-card">
+          <div class="laya-toggle-group">
+            <div class="laya-toggle-info">
+              <h3>General Misinformation Protection</h3>
+              <p>Evaluate science, public health, and technology claims against versioned evidence.</p>
+            </div>
+            <label class="laya-switch">
+              <input type="checkbox" id="setting-general-misinfo" checked>
+              <span class="laya-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="laya-card">
+          <h3 class="laya-card-title">Evidence Corpus Status</h3>
+          <p class="laya-stat-subtext">Local verified corpus version: <strong>2026.09-v1</strong> (Offline Bounded Collection)</p>
+          <div class="laya-badge-group">
+            <span class="laya-pill">9 Curated Fact-Checks</span>
+            <span class="laya-pill">PIB & CPCB Primary Records</span>
+            <span class="laya-pill">Protected Criticism Slice Active</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Universal Abuse Guard -->
+      <section class="laya-panel" id="panel-abuse" aria-labelledby="heading-abuse">
+        <h2 id="heading-abuse" class="laya-panel-title">Universal Abuse & Profanity Protection</h2>
+        <p class="laya-panel-desc">Real-time detection and blocking of abusive language, harassment, and masked profanity across the entire web, regardless of language or script.</p>
+
+        <!-- Master Switch -->
+        <div class="laya-card">
+          <div class="laya-toggle-group">
+            <div class="laya-toggle-text">
+              <label for="abuse-master-toggle" class="laya-card-title">Enable Universal Abuse Guard</label>
+              <p class="laya-card-desc">Monitors comments, discussion threads, and text blocks on any website in real time.</p>
+            </div>
+            <label class="laya-switch" aria-label="Toggle Universal Abuse Guard">
+              <input type="checkbox" id="abuse-master-toggle" checked>
+              <span class="laya-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Blocking Action Style -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Enforcement Action</h3>
+          <p class="laya-card-desc">Choose how abusive comments and text are presented on the page.</p>
+          <div class="laya-radio-group" role="radiogroup" aria-label="Abuse Enforcement Action">
+            <label class="laya-radio-label">
+              <input type="radio" name="abuseAction" value="blur" id="abuse-action-blur" checked>
+              <div class="laya-radio-content">
+                <strong>Blur with Click-to-Reveal (Recommended)</strong>
+                <span>Blurs offending text with a subtle Sovereign Laya Badge. You retain full control to view or re-hide.</span>
+              </div>
+            </label>
+            <label class="laya-radio-label">
+              <input type="radio" name="abuseAction" value="hide" id="abuse-action-hide">
+              <div class="laya-radio-content">
+                <strong>Completely Hide</strong>
+                <span>Silently collapses the comment container from the page layout entirely.</span>
+              </div>
+            </label>
+            <label class="laya-radio-label">
+              <input type="radio" name="abuseAction" value="redact" id="abuse-action-redact">
+              <div class="laya-radio-content">
+                <strong>Redact In-Place</strong>
+                <span>Replaces abusive words with [Blocked by Laya Abuse Guard] while preserving non-abusive context.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Obfuscation & Multilingual Engine Options -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Detection Features</h3>
+
+          <div class="laya-toggle-group">
+            <div class="laya-toggle-text">
+              <label for="abuse-obfuscation-toggle" class="laya-card-title" style="font-size:14px;">Anti-Obfuscation Defense</label>
+              <p class="laya-card-desc">Catches masked patterns like "ma*ar", "m@d@r", "f*ck", "ch**iya", "b.c", spacing, repeated letters, and zero-width characters.</p>
+            </div>
+            <label class="laya-switch" aria-label="Toggle Anti-Obfuscation Defense">
+              <input type="checkbox" id="abuse-obfuscation-toggle" checked>
+              <span class="laya-slider"></span>
+            </label>
+          </div>
+
+          <div class="laya-toggle-group" style="margin-top:16px;">
+            <div class="laya-toggle-text">
+              <label for="abuse-multilingual-toggle" class="laya-card-title" style="font-size:14px;">Laya Multilingual AI Classifier</label>
+              <p class="laya-card-desc">Analyzes comments with mmBERT across English, Hindi, Hinglish, Spanish, French, German, Arabic, Russian, and Indic languages.</p>
+            </div>
+            <label class="laya-switch" aria-label="Toggle Multilingual AI Classifier">
+              <input type="checkbox" id="abuse-multilingual-toggle" checked>
+              <span class="laya-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Custom Blocked & Exempt Words -->
+        <div class="laya-card">
+          <h3 class="laya-card-title">Custom User Rules</h3>
+          <p class="laya-card-desc">Add words or phrases to always block, or whitelist safe words to avoid false positives.</p>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+            <div>
+              <label for="custom-abuse-input" class="laya-input-label">Always Block (Comma-separated)</label>
+              <input type="text" id="custom-abuse-input" class="laya-input" placeholder="e.g. custom_slur, term1">
+            </div>
+            <div>
+              <label for="exempt-abuse-input" class="laya-input-label">Always Allow / Exempt</label>
+              <input type="text" id="exempt-abuse-input" class="laya-input" placeholder="e.g. technical_term, brand">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Hardware & Model -->
+      <section class="laya-panel" id="panel-hardware" aria-labelledby="heading-hardware">
+        <h2 id="heading-hardware" class="laya-panel-title">Local WebGPU & Inference Engine</h2>
+        <p class="laya-panel-desc">Configure the browser ML execution environment. All inference is 100% client-side.</p>
+
+        <div class="laya-card">
+          <h3 class="laya-card-title">Compute Backend Preference</h3>
+          <div class="laya-radio-group" role="radiogroup" aria-label="Compute Backend">
+            <label class="laya-radio-label">
+              <input type="radio" name="computeBackend" value="prefer_webgpu" id="backend-prefer-webgpu" checked>
+              <div class="laya-radio-content">
+                <strong>Prefer WebGPU (Recommended)</strong>
+                <span>Uses WebGPU for hardware acceleration with automatic CPU/WASM fallback if unavailable.</span>
+              </div>
+            </label>
+            <label class="laya-radio-label">
+              <input type="radio" name="computeBackend" value="require_webgpu" id="backend-require-webgpu">
+              <div class="laya-radio-content">
+                <strong>Require WebGPU</strong>
+                <span>Strict GPU-only mode. If WebGPU is unavailable, ML inference halts and rules-only filtering continues.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="laya-card">
+          <h3 class="laya-card-title">Model Status & Cache</h3>
+          <div class="laya-model-info">
+            <div class="laya-info-row">
+              <span>Model Architecture:</span>
+              <strong>Laya Multilingual (mmBERT-base, 322M params)</strong>
+            </div>
+            <div class="laya-info-row">
+              <span>Format:</span>
+              <strong>ONNX FP16 with float32 decision head</strong>
+            </div>
+            <div class="laya-info-row">
+              <span>Download Size:</span>
+              <strong>~646 MB (Cached in IndexedDB/CacheStorage)</strong>
+            </div>
+          </div>
+          <div class="laya-actions-row">
+            <button type="button" class="laya-btn laya-btn-subtle" id="btn-clear-model-cache">Clear Model Cache</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Review History -->
+      <section class="laya-panel" id="panel-history" aria-labelledby="heading-history">
+        <div class="laya-panel-header">
+          <div>
+            <h2 id="heading-history" class="laya-panel-title">Local Review History</h2>
+            <p class="laya-panel-desc">Inspect filtering reasons, reveal hidden items, and review decisions.</p>
+          </div>
+          <button type="button" class="laya-btn laya-btn-subtle" id="btn-clear-history">Clear History</button>
+        </div>
+
+        <div class="laya-history-list" id="history-container">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- Section: Diagnostics -->
+      <section class="laya-panel" id="panel-diagnostics" aria-labelledby="heading-diagnostics">
+        <h2 id="heading-diagnostics" class="laya-panel-title">Diagnostics & Performance Targets</h2>
+        <p class="laya-panel-desc">Real-time telemetry and benchmark compliance targets.</p>
+
+        <div class="laya-grid-metrics">
+          <div class="laya-metric-card">
+            <span class="laya-metric-title">Rule Evaluation Latency</span>
+            <span class="laya-metric-val">12 ms</span>
+            <span class="laya-metric-target">Target: &lt; 25 ms (p95)</span>
+          </div>
+          <div class="laya-metric-card">
+            <span class="laya-metric-title">Warm Text Classification</span>
+            <span class="laya-metric-val">185 ms</span>
+            <span class="laya-metric-target">Target: &lt; 250 ms (p95)</span>
+          </div>
+          <div class="laya-metric-card">
+            <span class="laya-metric-title">Scrolling Frame Rate</span>
+            <span class="laya-metric-val">60 FPS</span>
+            <span class="laya-metric-target">Target: 60 FPS</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js" type="module"></script>
+</body>
+</html>
